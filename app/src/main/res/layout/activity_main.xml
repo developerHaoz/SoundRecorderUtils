@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sid.soundrecorderutils.MainActivity"
+    >
+
+    <Button
+        android:id="@+id/main_btn_record_sound"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="开始录音"
+        />
+
+    <Button
+        android:id="@+id/main_btn_play_sound"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="播放录音"
+        />
+
+</LinearLayout>
