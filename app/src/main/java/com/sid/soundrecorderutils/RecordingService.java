@@ -9,9 +9,6 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -23,7 +20,6 @@ import java.util.TimerTask;
 public class RecordingService extends Service {
 
     private static final String LOG_TAG = "RecordingService";
-    private static final String TAG = "Hello World";
 
     private String mFileName = null;
     private String mFilePath = null;
@@ -32,20 +28,11 @@ public class RecordingService extends Service {
 
     private long mStartingTimeMillis = 0;
     private long mElapsedMillis = 0;
-    private int mElapsedSeconds = 0;
-    private OnTimerChangedListener onTimerChangedListener = null;
-    private static final SimpleDateFormat mTimerFormat = new SimpleDateFormat("mm:ss", Locale.getDefault());
-
-    private Timer mTimer = null;
     private TimerTask mIncrementTimerTask = null;
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    public interface OnTimerChangedListener {
-        void onTimerChanged(int seconds);
     }
 
     @Override
@@ -83,10 +70,6 @@ public class RecordingService extends Service {
             mRecorder.prepare();
             mRecorder.start();
             mStartingTimeMillis = System.currentTimeMillis();
-
-            //startTimer();
-            //startForeground(1, createNotification());
-
         } catch (IOException e) {
             Log.e(LOG_TAG, "prepare() failed");
         }
@@ -114,15 +97,14 @@ public class RecordingService extends Service {
         getSharedPreferences("sp_name_audio", MODE_PRIVATE)
                 .edit()
                 .putString("audio_path", mFilePath)
+                .putLong("elpased", mElapsedMillis)
                 .apply();
-        //remove notification
         if (mIncrementTimerTask != null) {
             mIncrementTimerTask.cancel();
             mIncrementTimerTask = null;
         }
 
         mRecorder = null;
-
     }
 
 }

@@ -50,6 +50,7 @@ public class PlaybackDialogFragment extends DialogFragment {
     //stores minutes and seconds of the length of the file.
     long minutes = 0;
     long seconds = 0;
+    private static long mFileLength = 0;
 
     public static PlaybackDialogFragment newInstance(RecordingItem item) {
         PlaybackDialogFragment f = new PlaybackDialogFragment();
@@ -65,6 +66,7 @@ public class PlaybackDialogFragment extends DialogFragment {
         item = getArguments().getParcelable(ARG_ITEM);
 
         long itemDuration = item.getLength();
+        mFileLength = itemDuration;
         minutes = TimeUnit.MILLISECONDS.toMinutes(itemDuration);
         seconds = TimeUnit.MILLISECONDS.toSeconds(itemDuration)
                 - TimeUnit.MINUTES.toSeconds(minutes);
@@ -93,7 +95,7 @@ public class PlaybackDialogFragment extends DialogFragment {
                 (getResources().getColor(R.color.colorPrimary), getResources().getColor(R.color.colorPrimary));
         mSeekBar.getProgressDrawable().setColorFilter(filter);
         mSeekBar.getThumb().setColorFilter(filter);
-
+        mFileLengthTextView.setText(String.valueOf(mFileLength));
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
