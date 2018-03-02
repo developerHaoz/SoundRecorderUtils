@@ -1,7 +1,7 @@
 ### 前言
 > 最近项目中需要用到录音的功能，搞定需求之后，花了些时间封装成一个录音的工具包，分享给大家，需要源码的 [点击这里](https://github.com/developerHaoz/SoundRecorderUtils)
 
-先贴个效果图给大家看一下，看看这个录音包的功能
+先贴个效果图给大家看一下，看看这个录音包的功能。
 
 ![SoundRecorderUtils.gif](http://upload-images.jianshu.io/upload_images/4334738-d1288c24e6707d59.gif?imageMogr2/auto-orient/strip)
 
